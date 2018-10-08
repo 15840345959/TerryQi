@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 class WechatController extends Controller
 {
 
-    const ACCOUNT_CONFIG = 'wechat.official_account.mbgl';
+    const ACCOUNT_CONFIG = 'wechat.official_account';
 
     /**
      * 处理微信的请求消息
