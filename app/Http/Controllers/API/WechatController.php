@@ -73,6 +73,10 @@ class WechatController extends Controller
                     }
                     break;
                 case 'text':        //文本消息
+
+                    $text = $message['Content'];
+
+                    return $text;
                     break;
                 case 'image':
 
