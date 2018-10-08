@@ -61,7 +61,7 @@ class WechatController extends Controller
                     }
                     break;
                 case 'text':        //文本消息
-                    Log::info(__METHOD__ . " " . "message:" . $message);
+                    Log::info(__METHOD__ . " " . "message:" . json_encode($message));
                     $text = $message['Content'];
                     Log::info(__METHOD__ . " " . "text:" . $text);
                     $text_msg = new Text($text);
