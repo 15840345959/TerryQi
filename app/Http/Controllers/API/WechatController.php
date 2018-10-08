@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\API;
 
+use EasyWeChat\Kernel\Messages\Text;
 use Illuminate\Http\Request;
 use App\Components\RequestValidator;
 use App\Http\Controllers\Controller;
@@ -75,8 +76,13 @@ class WechatController extends Controller
                 case 'text':        //文本消息
 
                     $text = $message['Content'];
+                    Log::info(__METHOD__ . " " . "text:" . $text);
+                    $text_msg = new Text($text);
 
-                    return $text;
+                    $app->customer_service->message($text_msg)
+                        ->to($user_openid)
+                        ->send();
+
                     break;
                 case 'image':
 
