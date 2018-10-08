@@ -38,19 +38,6 @@ class WechatController extends Controller
             Log::info(__METHOD__ . " " . 'user_openid:' . $user_openid);
             $wechat_user = $app->user->get($user_openid);        //通过用户openid获取信息
             Log::info(__METHOD__ . " " . 'wechat_user:' . json_encode($wechat_user));
-            //补全基本信息
-            $data = array(
-                "avatar" => $wechat_user['headimgurl'],
-                "nick_name" => $wechat_user['nickname'],
-                "gender" => $wechat_user['sex'],
-                "country" => $wechat_user['country'],
-                "province" => $wechat_user['province'],
-                "language" => $wechat_user['language'],
-                "city" => $wechat_user['city'],
-                "openid" => $wechat_user['openid'],
-                "busi_name" => self::BUSI_NAME
-            );
-
             //根据消息类型分别进行处理
             switch ($message['MsgType']) {
                 case 'event':
@@ -74,11 +61,10 @@ class WechatController extends Controller
                     }
                     break;
                 case 'text':        //文本消息
-
+                    Log::info(__METHOD__ . " " . "message:" . $message);
                     $text = $message['Content'];
                     Log::info(__METHOD__ . " " . "text:" . $text);
                     $text_msg = new Text($text);
-
                     $app->customer_service->message($text_msg)
                         ->to($user_openid)
                         ->send();
