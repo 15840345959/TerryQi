@@ -17,5 +17,7 @@ Route::group(['prefix' => '', 'middleware' => ['BeforeRequest']], function () {
     //测试接口
     Route::get('test', 'API\TestController@test');
 
+    Route::any('/wechat/serve', 'API\WeChatController@serve');        //公众号校验token
+
 });
 
