@@ -18,6 +18,8 @@ Route::group(['prefix' => 'html5', 'middleware' => []], function () {
 
     Route::get('/index2', 'Html5\IndexController@index2')->middleware('wechat.oauth:snsapi_userinfo');
 
+    Route::get('/index3', 'Html5\IndexController@index3')->middleware('wechat.oauth:snsapi_base');
+
 });
 
 
