@@ -12,10 +12,9 @@
 */
 
 
+Route::group(['prefix' => 'html5', 'middleware' => ['wechat.oauth']], function () {
 
-Route::group(['prefix' => 'admin', 'middleware' => ['admin.login']], function () {
-
-
+    Route::get('/index', 'Html5\IndexController@index');        //投票大赛错误页面
 
 });
 
