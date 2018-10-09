@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Log;
 
 class IndexController extends Controller
 {
+
+    const ACCOUNT_CONFIG = 'wechat.official_account';
+
     /*
      * 首页测试
      *
@@ -30,9 +33,16 @@ class IndexController extends Controller
 
         $session_val = session('wechat.oauth_user'); // 拿到授权用户资料
 
+        //生成微信JS-SDK相关
+        $wxConfig = null;
+        $app = app(self::ACCOUNT_CONFIG);
+        $wxConfig = $app->jssdk->buildConfig(array('getLocation', 'onMenuShareAppMessage'), false);
+
+        Log::info(__METHOD__ . " " . "wxConfig:" . json_encode($wxConfig));
+
         Log::info("session_val:" . json_encode($session_val));
 
-        return view('html5.index', []);
+        return view('html5.index', ['wxConfig' => $wxConfig]);
     }
 
     public function index2(Request $request)
