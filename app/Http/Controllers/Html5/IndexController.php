@@ -34,4 +34,15 @@ class IndexController extends Controller
 
         return view('html5.index', []);
     }
+
+    public function index2(Request $request)
+    {
+        $data = $request->all();
+
+        $session_val = session('wechat.oauth_user'); // 拿到授权用户资料
+
+        Log::info("session_val:" . json_encode($session_val));
+
+        return view('html5.index', []);
+    }
 }

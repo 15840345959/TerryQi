@@ -12,9 +12,11 @@
 */
 
 
-Route::group(['prefix' => 'html5', 'middleware' => ['wechat.oauth']], function () {
+Route::group(['prefix' => 'html5', 'middleware' => []], function () {
 
-    Route::get('/index', 'Html5\IndexController@index');        //投票大赛错误页面
+    Route::get('/index', 'Html5\IndexController@index')->middleware('wechat.oauth');
+
+    Route::get('/index2', 'Html5\IndexController@index2')->middleware('wechat.oauth:snsapi_userinfo');
 
 });
 
